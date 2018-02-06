@@ -1,0 +1,32 @@
+bool ScanPath(char *dir)
+{
+	char path[MAX_PATH];
+	ZeroMemory(path, MAX_PATH);
+	MergePath(path, dir, "*");
+
+	WIN32_FIND_DATA fdata;
+	ZeroMemory(&fdata, sizeof(WIN32_FIND_DATA));
+	HANDLE h = FindFirstFile(path, &fdata);
+
+	if(h == INVALID_HANDLE_VALUE)
+		return false;
+
+	do { 
+		
+		if(strcmp(fdata.cFileName, ".") == 0 || strcmp(fdata.cFileName, "..") == 0)
+			continue;
+
+		if((fdata.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) > 0){
+			ScanPath();
+		} else {
+		
+		}
+
+	} while(FindNextFile(h, &fdata));
+
+	if(h == INVALID_HANDLE_VALUE)
+		return false;
+
+	FindClose(h);
+	return true;
+}

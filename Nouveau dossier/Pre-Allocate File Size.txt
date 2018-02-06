@@ -1,0 +1,8 @@
+	HANDLE hFile = CreateFileA("C:\\Temp\\SimpleTest.bin", GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	if(hFile == INVALID_HANDLE_VALUE)
+		return;
+
+	SetFilePointer(hFile, 1048576, NULL, FILE_BEGIN);
+	SetEndOfFile(hFile);
+
+	CloseHandle(hFile);

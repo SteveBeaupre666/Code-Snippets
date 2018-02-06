@@ -1,0 +1,18 @@
+void ShowErrorMsgDlg(const char *fmt, ...)
+{
+	if(fmt == NULL)
+		return;
+
+	static const int BufSize = 2048;
+
+	char txt[BufSize];
+	ZeroMemory(txt, BufSize);
+
+	va_list ap;
+	va_start(ap, fmt);
+	vsnprintf(txt, BufSize, fmt, ap);
+	va_end(ap);
+
+	MessageBoxA(NULL, txt, "RenderEngine Error", MB_OK | MB_ICONERROR);
+}
+

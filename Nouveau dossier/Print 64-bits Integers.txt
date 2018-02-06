@@ -1,0 +1,25 @@
+#include "Windows.h"
+#include "stdio.h"
+
+#define UI64 unsigned __int64
+#define SI64 __int64
+
+const int MaxBufSize = 64;
+char szNumber[MaxBufSize];
+
+int main()
+{
+	SI64 s = 0x8000000000000000; //  -9223372036854775808
+	ZeroMemory(szNumber, MaxBufSize);
+	sprintf(szNumber, "%lld\n", s);
+	printf(szNumber);
+
+
+	UI64 u = 0xFFFFFFFFFFFFFFFF;   // 18446744073709551615
+	ZeroMemory(szNumber, MaxBufSize);
+	sprintf(szNumber, "%llu\n", u);
+	printf(szNumber);
+
+	system("PAUSE");
+	return 0;
+}

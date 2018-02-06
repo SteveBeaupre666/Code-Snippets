@@ -1,0 +1,32 @@
+#include "Utils.h"
+
+void AskUserInput()
+{
+	// Ask to restart the process...
+	printf("Continue?[y,n] ");
+
+	// Init the loop counter
+	int Loop = 0;
+	//if(Loop > 0)
+		//putchar('\n'); // ?
+
+	// Loop until user respont 'y' or 'n'
+	while(1){
+
+		// Loop counter
+		Loop++;
+
+		// Wait for input...
+		int c = getchar();
+
+		if(toupper(c) == 'Y')	// User said yes...
+			goto RestartJmp;	// Reask another number to factorize
+
+		if(toupper(c) == 'N')	// User said no...
+			return;				// return (quit)...
+			
+		for(int i = 0; i < 25; i++)	// <--------
+			putchar(VK_BACK);		// <-------- Good Hack! Do not touch! Press Backspace 25 times.
+		printf("Continue?[y,n] ");	// <--------
+	}
+}

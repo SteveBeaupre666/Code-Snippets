@@ -1,0 +1,9 @@
+ex.
+
+// .h
+typedef BOOL (WINAPI* PFNINSTALLHOOK)(HWND ViewerWnd, void *pKeyEventFunc);
+
+PFNINSTALLHOOK InstallHook;
+
+// .cpp
+InstallHook = (PFNINSTALLHOOK)GetProcAddress(hDll, szInstallHook);
